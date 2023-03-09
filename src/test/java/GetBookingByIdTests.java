@@ -14,16 +14,20 @@ public class GetBookingByIdTests {
       res
               .then()
               .statusCode(200);
+
       //ekrana basıyoruz
       res.prettyPrint();
+
       //Jsonda obje içindeki firstname,lastname,totalprice alanındaki değerleri alıyoruz
       String firstName=res.jsonPath().getJsonObject("firstname");
       String lastName=res.jsonPath().getJsonObject("lastname");
       int totalPrice=res.jsonPath().getJsonObject("totalprice");
+
+
       //Aldığımız değeri karşılaştırıyoruz
-        Assertions.assertEquals("Josh",firstName);
-        Assertions.assertEquals("Allen",lastName);
-        Assertions.assertEquals(111,totalPrice);
+      Assertions.assertEquals("Josh",firstName);
+      Assertions.assertEquals("Allen",lastName);
+      Assertions.assertEquals(111,totalPrice);
 
     }
 }
