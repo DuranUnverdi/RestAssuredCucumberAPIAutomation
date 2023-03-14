@@ -12,19 +12,14 @@ public class UpdateBookingTest extends BaseTest{
 
     @Test
     public void updateBookingTest(){
-      //Token oluşturduk
-      String token= createToken();
 
-      //Response oluştur
-      Response creatBookingObject=createBooking();
-      int bookingId= creatBookingObject.jsonPath().getJsonObject("bookingid");
 
       //Request yap
       Response response=given()
               .contentType(ContentType.JSON)
-              .header("Cookie","token="+token)
+              .header("Cookie","token="+createToken())
               .body(bookingObject("Ayşe","Fatma",500,true))
-              .put("https://restful-booker.herokuapp.com/booking/"+bookingId);
+              .put("https://restful-booker.herokuapp.com/booking/"+createBookingId());
 
       response.prettyPrint();
 

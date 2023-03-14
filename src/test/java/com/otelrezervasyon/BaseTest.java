@@ -54,4 +54,8 @@ public class BaseTest {
 
         return res.jsonPath().getJsonObject("token");
     }
+    protected int createBookingId(){
+        Response response=createBooking();
+        return response.jsonPath().getJsonObject("bookingid");
+    }
 }
