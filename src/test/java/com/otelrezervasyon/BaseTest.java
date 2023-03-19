@@ -1,20 +1,37 @@
 package com.otelrezervasyon;
 
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
+import org.junit.jupiter.api.BeforeEach;
+
+import java.util.Arrays;
 
 import static io.restassured.RestAssured.given;
 
 public class BaseTest {
 
+    RequestSpecification spec;
+    //Base url oluşturduk ve request response için Loglama yaptık
+    //Before each ile test koşumları öncesinde bir defa koşacak
+    @BeforeEach
+    public void setup(){
+      spec=new RequestSpecBuilder()
+                .setBaseUri("https://restful-booker.herokuapp.com")
+                .addFilters(Arrays.asList(new RequestLoggingFilter(), new ResponseLoggingFilter()))
+                .build();
+    }
+
     protected Response createBooking(){
-        Response res= given()
+        Response res= given(spec)
                 .when()
                 .contentType(ContentType.JSON)
                 .body(bookingObject("Duran","Unverdi",200,true))
-                .post("https://restful-booker.herokuapp.com/booking");
-        res.prettyPrint();
+                .post("/booking");
         res
                 .then()
                 .statusCode(200);
@@ -43,14 +60,12 @@ public class BaseTest {
         body.put("username","admin");
         body.put("password","password123");
 
-        Response res= given()
+        Response res= given(spec)
                 .contentType(ContentType.JSON)
                 .when()
                 .body(body.toString())
-                .log().all()
-                .post("https://restful-booker.herokuapp.com/auth");
+                .post("/auth");
 
-        res.prettyPrint();
 
         return res.jsonPath().getJsonObject("token");
     }

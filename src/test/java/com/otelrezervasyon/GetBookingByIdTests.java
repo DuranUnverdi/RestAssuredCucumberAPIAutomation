@@ -12,15 +12,12 @@ public class GetBookingByIdTests extends BaseTest{
     public void getBookingById(){
 
 
-      Response res=  given()
+      Response res=  given(spec)
                 .when()
-                .get("https://restful-booker.herokuapp.com/booking/"+createBookingId());
+                .get("/booking/"+createBookingId());
       res
               .then()
               .statusCode(200);
-
-      //ekrana basıyoruz
-      res.prettyPrint();
 
       //Jsonda obje içindeki firstname,lastname,totalprice alanındaki değerleri alıyoruz
       String firstName=res.jsonPath().getJsonObject("firstname");

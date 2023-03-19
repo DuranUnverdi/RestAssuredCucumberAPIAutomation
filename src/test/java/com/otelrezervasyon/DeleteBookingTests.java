@@ -10,12 +10,11 @@ public class DeleteBookingTests extends BaseTest{
     @Test
     public void deleteBookingTest(){
 
-        Response res=given()
+        Response res=given(spec)
                 .contentType(ContentType.JSON)
                 .header("Cookie", "token="+createToken())
                 .when()
-                .delete("https://restful-booker.herokuapp.com/booking/"+createBookingId());
-        res.prettyPrint();
+                .delete("/booking/"+createBookingId());
         res.then()
                 .statusCode(201);
 

@@ -16,14 +16,12 @@ public class PartialUpdateBookingTests extends BaseTest{
         //Çağrıyı yap
         JSONObject body=new JSONObject();
         body.put("firstname","Mehmet");
-        Response response =given()
+        Response response =given(spec)
                 .contentType(ContentType.JSON)
                 .header("Cookie","token="+createToken())
                 .body(body.toString())
                 .when()
-                .patch("https://restful-booker.herokuapp.com/booking/"+createBookingId() );
-        response.prettyPrint();
-
+                .patch("/booking/"+createBookingId() );
         //Assertion testleri
 
         Assertions.assertEquals("Mehmet",response.jsonPath().getJsonObject("firstname"));
