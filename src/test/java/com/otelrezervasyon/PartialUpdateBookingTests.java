@@ -20,6 +20,7 @@ public class PartialUpdateBookingTests extends BaseTest{
                 .contentType(ContentType.JSON)
                 .header("Cookie","token="+createToken())
                 .body(body.toString())
+                .when()
                 .patch("https://restful-booker.herokuapp.com/booking/"+createBookingId() );
         response.prettyPrint();
 
