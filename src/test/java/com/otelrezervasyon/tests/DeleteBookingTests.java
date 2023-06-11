@@ -1,4 +1,4 @@
-package com.otelrezervasyon;
+package com.otelrezervasyon.tests;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

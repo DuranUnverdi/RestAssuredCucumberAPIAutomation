@@ -1,11 +1,9 @@
-package com.otelrezervasyon;
+package com.otelrezervasyon.tests;
 
-import io.restassured.internal.common.assertion.Assertion;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.awt.geom.RectangularShape;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
