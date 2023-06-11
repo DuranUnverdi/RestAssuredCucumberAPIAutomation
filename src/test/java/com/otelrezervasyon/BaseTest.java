@@ -16,6 +16,7 @@ import static io.restassured.RestAssured.given;
 public class BaseTest {
 
     RequestSpecification spec;
+
     //Base url oluşturduk ve request response için Loglama yaptık
     //Before each ile test koşumları öncesinde bir defa koşacak
     @BeforeEach
